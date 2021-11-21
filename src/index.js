@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, } from 'redux';
 import { Provider } from 'react-redux';
 
 
@@ -17,19 +17,14 @@ const tester = ( state='hello world', action ) =>{
     return state;
 }
 
-const feedback= (state={},action)=>{
+const feedback= (state=[],action)=>{
     console.log('in feedback reducer:', action);
-    if(action.type === 'ADD_FEELING'){
-        state.feeling = action.payload;
+    console.log('index state:', state);
+    if(action.type === 'ADD_FEEDBACK'){
+        return state = [...state, action.payload];
     }
-    else if(action.type === 'ADD_UNDERSTANDING'){
-        state.understanding = action.payload;
-    }
-    else if(action.type === 'ADD_SUPPORTED'){
-        state.supported = action.payload;
-    }
-    else if(action.type === 'ADD_COMMENT'){
-        state.comment = action.payload;
+    else if(action.type === 'RESET'){
+        return state = [];
     }
     console.log('feedback:',state);
         return state

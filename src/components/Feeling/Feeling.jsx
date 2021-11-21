@@ -61,7 +61,7 @@ function Feeling( props ){
       underline="none" 
       component = {Link}
       to = "/understanding"
-      onClick = {()=>dispatch({type: "ADD_FEELING", payload: feeling})}>NEXT</Button>
+      onClick = {()=>dispatch({type: "ADD_FEEDBACK", payload: feeling})}>NEXT</Button>
   </Grid>
  
     </div>

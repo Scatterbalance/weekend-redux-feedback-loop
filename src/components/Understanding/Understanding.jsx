@@ -61,7 +61,7 @@ function Understanding( props ){
       underline="none" 
       component = {Link}
       to = "/supported"
-      onClick = {()=>dispatch({type: "ADD_UNDERSTANDING", payload: understanding})}>NEXT</Button>
+      onClick = {()=>dispatch({type: "ADD_FEEDBACK", payload: understanding})}>NEXT</Button>
   </Grid>
     </div>
 

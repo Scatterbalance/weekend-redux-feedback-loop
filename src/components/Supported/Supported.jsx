@@ -59,7 +59,7 @@ function Supported( props ){
       underline="none" 
       component = {Link}
       to = "/comments"
-      onClick = {()=>dispatch({type: "ADD_SUPPORTED", payload: supported})}>NEXT</Button>
+      onClick = {()=>dispatch({type: "ADD_FEEDBACK", payload: supported})}>NEXT</Button>
   </Grid>
     </div>
     

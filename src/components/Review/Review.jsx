@@ -18,10 +18,11 @@ function Review( props ){
     return(
         <div>
             <h1>Review your feedback</h1>
-            <p>{feedback.feeling}</p>
-            <p>{feedback.understanding}</p>
-            <p>{feedback.supported}</p>
-            <p>{feedback.comment}</p>
+            <h3>Feelings: {feedback[0]}</h3>
+            <h3>Understandings: {feedback[1]}</h3>
+            <h3>Supported: {feedback[2]}</h3>
+            <h3>Comments: {feedback[3]}</h3>
+            <p>{JSON.stringify(feedback)}</p>
 
             <Button 
                
@@ -29,7 +30,7 @@ function Review( props ){
                 underline="none" 
                 component = {Link}
                 to = "/"
-                onClick = {()=>{submitFeedback, dispatch({type: "RESET", payload: ""})}}>NEXT</Button>
+                onClick = {()=>{submitFeedback(); dispatch({type: "RESET", payload: ""})}}>NEXT</Button>
         </div>
     )
 }

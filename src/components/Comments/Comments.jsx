@@ -49,7 +49,7 @@ function Comments( props ){
       underline="none" 
       component = {Link}
       to = "/review"
-      onClick = {()=>dispatch({type: "ADD_COMMENT", payload: comments})}>NEXT</Button>
+      onClick = {()=>dispatch({type: "ADD_FEEDBACK", payload: comments})}>NEXT</Button>
   </Grid>
     </div>
             

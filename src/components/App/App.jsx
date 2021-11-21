@@ -7,6 +7,7 @@ import Understanding from '../Understanding/Understanding';
 import Supported from '../Supported/Supported';
 import Comments from '../Comments/Comments';
 import Review from '../Review/Review';
+import Ending from '../Ending/Ending';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -22,6 +23,8 @@ function App() {
           <Route path = "/supported" element={<Supported />}></Route>
           <Route path = "/comments" element={<Comments />}></Route>
           <Route path = "/review" element={<Review />}></Route>
+          <Route path = "/ending" element={<Ending />}></Route>
+          
         </Routes>
 
 

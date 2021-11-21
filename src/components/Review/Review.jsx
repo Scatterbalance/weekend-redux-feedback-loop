@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'; 
-import { TextField, Button, Select, MenuItem, InputLabel, FormControl,FormHelperText, Grid} from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle} from '@material-ui/core';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -10,13 +11,18 @@ function Review( props ){
     // const [name, setName] = useState( null );
     const feedback = useSelector( store => store.feedback );
     const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
     
+    const handleClose = () => {
+        setOpen(false);
+      };
     
     const submitFeedback = () =>{
             console.log( ' in submitFeedback' );
             axios.post( '/feedback', feedback ).then( (response )=>{
                 console.log( 'back from POST:', response.data );
                 dispatch({type: "RESET", payload: ""})
+                
             }).catch( ( err )=>{
                 console.log(err);
                 alert( 'nope' );
@@ -31,15 +37,48 @@ function Review( props ){
             <h3>Understandings: {feedback[1]}</h3>
             <h3>Supported: {feedback[2]}</h3>
             <h3>Comments: {feedback[3]}</h3>
-            <p>{JSON.stringify(feedback)}</p>
+           
 
             <Button 
                
                 variant="contained" 
                 underline="none" 
-                component = {Link}
-                to = "/"
-                onClick = {()=>{submitFeedback()}}>NEXT</Button>
+                
+                onClick = {()=>{submitFeedback(); setOpen(true);}}>NEXT</Button>
+                
+                <div>
+                <Dialog
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="alert-dialog-title"
+                    aria-describedby="alert-dialog-description"
+                >
+                    <DialogTitle
+                    
+                    id="alert-dialog-title">
+                    {"Success!"}
+                    </DialogTitle>
+                    <DialogContent>
+                        <CheckCircleIcon color = "success" sx={{ fontSize: 80 }}/>
+
+                    <DialogContentText id="alert-dialog-description">
+                        Thank you for your feedback. Would you like to complete another survey?
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button
+                    component = {Link}
+                    to = "/ending" 
+                    onClick={handleClose}>Disagree</Button>
+                    <Button 
+                    component = {Link}
+                    to = "/"
+                    onClick={handleClose} autoFocus>
+                        Agree
+                    </Button>
+                    </DialogActions>
+                </Dialog>
+                </div>
         </div>
     )
 }

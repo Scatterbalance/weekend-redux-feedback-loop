@@ -17,10 +17,29 @@ const tester = ( state='hello world', action ) =>{
     return state;
 }
 
+const feedback= (state={},action)=>{
+    console.log('in feedback reducer:', action);
+    if(action.type === 'ADD_FEELING'){
+        state.feeling = action.payload;
+    }
+    else if(action.type === 'ADD_UNDERSTANDING'){
+        state.understanding = action.payload;
+    }
+    else if(action.type === 'ADD_SUPPORTED'){
+        state.supported = action.payload;
+    }
+    else if(action.type === 'ADD_COMMENT'){
+        state.comment = action.payload;
+    }
+    console.log('feedback:',state);
+        return state
+}
+
 
 // store
 const feedbackStore = createStore(combineReducers({
     tester,
+    feedback
     
 })
 )

@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers, } from 'redux';
+import { createStore, combineReducers, applyMiddleware} from 'redux';
 import { Provider } from 'react-redux';
+import logger from 'redux-logger';
 
 
 //reducers
@@ -36,7 +37,11 @@ const feedbackStore = createStore(combineReducers({
     tester,
     feedback
     
-})
-)
+}
+),
+applyMiddleware(
+    logger
+    )
+);
 ReactDOM.render(<Provider store = {feedbackStore}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();

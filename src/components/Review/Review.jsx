@@ -10,11 +10,20 @@ function Review( props ){
     // const [name, setName] = useState( null );
     const feedback = useSelector( store => store.feedback );
     const dispatch = useDispatch();
+    
+    
     const submitFeedback = () =>{
-        let objectToSend = {feedback}
-        console.log("objectToSend:", objectToSend);
+            console.log( ' in submitFeedback' );
+            axios.post( '/feedback', feedback ).then( (response )=>{
+                console.log( 'back from POST:', response.data );
+                dispatch({type: "RESET", payload: ""})
+            }).catch( ( err )=>{
+                console.log(err);
+                alert( 'nope' );
+            })
+        }
 
-    }
+    
     return(
         <div>
             <h1>Review your feedback</h1>
@@ -30,7 +39,7 @@ function Review( props ){
                 underline="none" 
                 component = {Link}
                 to = "/"
-                onClick = {()=>{submitFeedback(); dispatch({type: "RESET", payload: ""})}}>NEXT</Button>
+                onClick = {()=>{submitFeedback()}}>NEXT</Button>
         </div>
     )
 }
